@@ -1,0 +1,39 @@
+body {
+    background-color: whitesmoke;
+}
+
+.imagen {
+    margin-top: 30%;
+    width: 100%;
+}
+
+.imagen img {
+    display: block;
+    margin: auto;
+}
+
+input {
+    display: block;
+    margin: auto;
+}
+
+.boton {
+    text-align: center;
+    line-height: 50px;
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 50px;
+    background-color: #a7b9bd;
+    border: solid 1px #0099ff;
+    color: white;
+}
+
+.contenedor-login{
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.contenedor-login div {
+    margin-bottom: 10px;
+}

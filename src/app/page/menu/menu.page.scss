@@ -1,0 +1,27 @@
+.active-item{
+    border-left: 8px solid var(--ion-color-primary)
+}
+.titulo{
+    background-color:#DFF0F2;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.pie{
+    background-color: #F8F8F8;
+    position: absolute;
+    height: 70px;
+    line-height: 70px;
+    width:100%;
+    bottom: 0;
+    text-align: center;
+    font-size: 20px;
+}
+
+.pie img{
+    text-align: left;
+    width: 50px;
+    height: 50px;
+}
