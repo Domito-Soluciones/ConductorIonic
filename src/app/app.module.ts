@@ -12,11 +12,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';  
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { IonicStorageModule  } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot()],
   providers: [
     StatusBar,
     SplashScreen,
@@ -27,3 +34,4 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
   bootstrap: [AppComponent]
 })
 export class AppModule {} 
+ 

@@ -1,12 +1,28 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Producción</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-header>Producción</ion-header>
+<ion-content padding>
+    <div class="contenedor-imagen">
+        <ion-img class="img-produccion" [src]="imagen"></ion-img>
+    </div>
+    <div class="contenedor-imagen total">
+        {{total}}
+    </div>
+    <ion-list>
+        <ion-item *ngFor="let item of produccion">
+            <div>
+                <div class="id">{{item.servicio_id}}</div>
+                <div class="fecha">{{item.servicio_fecha}} {{item.servicio_hora}}</div>
+            </div>
+            <div class="tarifa">
+                $ {{item.servicio_tarifa1}}
+            </div>
+        </ion-item>
+    </ion-list>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Conectado</ion-title>
+    </ion-toolbar>
+</ion-footer>

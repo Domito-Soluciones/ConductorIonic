@@ -6,11 +6,12 @@ import { ToastController } from '@ionic/angular';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { Constantes } from '../../intercace/constantes';
 import { Observable } from 'rxjs';
- 
+//import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  styleUrls: ['./login.page.scss']
 })
 export class LoginPage implements OnInit {
 
@@ -23,6 +24,7 @@ export class LoginPage implements OnInit {
     private router: Router,
     private toastController: ToastController,
     private uniqueDeviceID: UniqueDeviceID
+    //private storage: Storage
     ){
 
   }

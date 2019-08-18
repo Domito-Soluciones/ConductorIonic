@@ -1,12 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Historico</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<ion-header>Historico</ion-header>
 <ion-content>
-
+    <ion-img class="img-central" [src]="imagen"></ion-img>
+    <ion-list>
+        <ion-item *ngFor="let item of historico">
+            <div>
+                <ion-img class="cancelado" src="./assets/cerrar.png" *ngIf="item.servicio_estado === '6'"></ion-img>
+                <ion-img class="finalizado" src="./assets/finalizado.png" *ngIf="item.servicio_estado === '5'"></ion-img>
+            </div>
+            <div>
+                <div><span class="id">{{item.servicio_id}}</span><span class="cliente">{{item.servicio_cliente}}</span></div>
+                <div class="fecha">{{item.servicio_fecha}} {{item.servicio_hora}}</div>
+            </div>
+        </ion-item>
+    </ion-list>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Conectado</ion-title>
+    </ion-toolbar>
+</ion-footer>

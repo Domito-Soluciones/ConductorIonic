@@ -1,9 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>configuracion</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<ion-header>Configuración</ion-header>
 <ion-content>
+    <ion-img class="img-central" [src]="imagen"></ion-img>
+    <div class="titulo">Motor Navegación</div>
+    <ion-radio-group>
+        <ion-item>
+            <ion-label>Google Maps</ion-label>
+            <ion-radio slot="start" value="gmaps" (change)="seleccionarGMaps()"></ion-radio>
+        </ion-item>
 
+        <ion-item>
+            <ion-label>Waze</ion-label>
+            <ion-radio slot="start" value="waze" checked (change)="seleccionarWaze()"></ion-radio>
+        </ion-item>
+    </ion-radio-group>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Conectado</ion-title>
+    </ion-toolbar>
+</ion-footer>

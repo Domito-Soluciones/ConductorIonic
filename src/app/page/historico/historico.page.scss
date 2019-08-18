@@ -1,0 +1,29 @@
+.finalizado {
+    width: 50px;
+    height: 50px;
+}
+
+.cancelado {
+    width: 40px;
+    height: 40px;
+}
+
+.finalizado,
+.cancelado {
+    margin-left: 20px;
+    margin-right: 40px;
+}
+
+.id {
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.fecha {
+    margin-left: 70px;
+}
+
+ion-item {
+    height: 60px;
+}

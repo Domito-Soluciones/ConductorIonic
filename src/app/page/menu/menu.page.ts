@@ -10,20 +10,29 @@ export class MenuPage implements OnInit {
 
   pages = [
       {
-        title: 'Programdos',
-        url: '/menu/programado'
+        title: 'Programados',
+        url: '/menu/programado',
+        img : './assets/calendario.png'
       } ,
       {
         title: 'Historico',
-        url: '/menu/historico'
+        url: '/menu/historico',
+        img : './assets/historial.png'
       } ,
       {
         title: 'Producción',
-        url: '/menu/produccion'
+        url: '/menu/produccion',
+        img : './assets/produccion.png'
       },
       {
         title: 'Configuración',
-        url: '/menu/configuracion'
+        url: '/menu/configuracion',
+        img : './assets/configuracion.png'
+      },
+      {
+        title: 'Cerrar Sesión',
+        url: '/menu/salir',
+        img : './assets/logout.png'
       }
   ];
 
