@@ -6,16 +6,17 @@ import {Constantes} from '../intercace/constantes';
 @Injectable({
   providedIn: 'root'
 })
-export class ServiciosProgramadosService {
+export class ProgramadoService {
 
   respuesta:Observable<any>;
 
   constructor(private http: HttpClient) { }
 
-  getServiciosProgramados() {
+  obtenererviciosProgramados() {
     let params = new HttpParams()
-    .set("conductor", Constantes.conductor.id)
-    this.respuesta = this.http.post(Constantes.URL_BASE_SERVICIO+"ModEstadoMovil.php", params, Constantes.httpOptions );
+    //.set("conductor", Constantes.conductor.id)
+    .set("conductor", "115")
+    this.respuesta = this.http.post(Constantes.URL_BASE_SERVICIO+"GetServiciosProgramados.php", params, Constantes.httpOptions );
     return this.respuesta;
   }
 

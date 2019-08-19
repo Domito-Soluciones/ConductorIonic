@@ -13,9 +13,10 @@ const routes: Routes = [
     component: MenuPage,
     children: [
       { path: 'programado', loadChildren: '../../page/programado/programado.module#ProgramadoPageModule' },
-      { path: 'historico', loadChildren: './page/historico/historico.module#HistoricoPageModule' },
+      { path: 'historico', loadChildren: '../../page/historico/historico.module#HistoricoPageModule' },
       { path: 'produccion', loadChildren: '../../page/produccion/produccion.module#ProduccionPageModule' },
-      { path: 'configuracion', loadChildren: '../../page/configuracion/configuracion.module#ConfiguracionPageModule' }
+      { path: 'configuracion', loadChildren: '../../page/configuracion/configuracion.module#ConfiguracionPageModule' },
+      { path: 'salir', loadChildren: '../../page/configuracion/configuracion.module#ConfiguracionPageModule' }
 
 
     ]

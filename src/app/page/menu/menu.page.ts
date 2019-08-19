@@ -31,7 +31,7 @@ export class MenuPage implements OnInit {
       },
       {
         title: 'Cerrar Sesión',
-        url: '/menu/salir',
+        url: '../login',
         img : './assets/logout.png'
       }
   ];
