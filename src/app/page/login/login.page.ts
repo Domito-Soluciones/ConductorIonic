@@ -7,6 +7,7 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { Constantes } from '../../intercace/constantes';
 import { Observable } from 'rxjs';
 //import { Storage } from '@ionic/storage';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 @Component({
   selector: 'app-login',
@@ -23,10 +24,11 @@ export class LoginPage implements OnInit {
     private modEstadoMovil:ModEstadoMovilService,
     private router: Router,
     private toastController: ToastController,
-    private uniqueDeviceID: UniqueDeviceID
+    private uniqueDeviceID: UniqueDeviceID,
+    private backgroundMode: BackgroundMode
     //private storage: Storage
     ){
-
+      this.backgroundMode.enable();
   }
 
   ngOnInit(){ 
@@ -61,6 +63,7 @@ export class LoginPage implements OnInit {
                 //this.storage.remove("idUsuario");
                 //this.storage.remove("claveUsuario");
               }
+
               this.router.navigateByUrl("menu/programado");
             } 
           }
