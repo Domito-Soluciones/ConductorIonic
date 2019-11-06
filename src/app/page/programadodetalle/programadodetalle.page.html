@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    Detalle Servicio
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col><div>ID</div></ion-col><ion-col><div id="id"></div></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col><div>Cliente</div></ion-col><ion-col><div id="cliente"></div></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col><div>Fecha</div></ion-col><ion-col><div id="fecha"></div></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col><div>Hora</div></ion-col><ion-col><div id="hora"></div></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col><div>Ruta</div></ion-col><ion-col><div id="ruta"></div></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col><div>Tipo Ruta</div></ion-col><ion-col><div id="tipoRuta"></div></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col><div>Tarifa</div></ion-col><ion-col><div id="tarifa"></div></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col><div>Pasajeros</div></ion-col><ion-col><div id="pasajeros"></div></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col><div>Observaciones</div></ion-col><ion-col><div id="observaciones"></div></ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-list>
+        <ion-item *ngFor="let item of programadoDetalle">
+            <div>
+                <ion-img class="inicio" src="./assets/arriba.png"></ion-img>
+            </div>
+            <div>
+                <span class="id">{{item.servicio_id}}</span>
+            </div>
+            <div>
+                <div><span class="id">{{item.servicio_cliente}}</span></div>
+                <div class="fecha">{{item.servicio_fecha}} {{item.servicio_hora}}</div>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>

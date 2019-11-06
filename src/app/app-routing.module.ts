@@ -5,9 +5,11 @@ const routes: Routes = [
   { path: '', loadChildren: './page/login/login.module#LoginPageModule' },
   { path: 'login', loadChildren: './page/login/login.module#LoginPageModule' },
   { path: 'menu', loadChildren: './page/menu/menu.module#MenuPageModule' },
-  { path: 'salir', loadChildren: './page/salir/salir.module#SalirPageModule' }
+  { path: 'salir', loadChildren: './page/salir/salir.module#SalirPageModule' },
+  { path: 'programado', loadChildren: './programado/programado.module' },
+  { path: 'programadodetalle', loadChildren: './page/programadodetalle/programadodetalle.module#ProgramadodetallePageModule' }
 
-]; 
+];  
 
 @NgModule({
   imports: [

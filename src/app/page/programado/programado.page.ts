@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProgramadoService } from '../../service/programado.service';
 import { ToastController } from '@ionic/angular';
+import { Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-programado',
@@ -14,7 +15,8 @@ export class ProgramadoPage implements OnInit {
   respuestaProgramado:Observable<any>;
 
   constructor(private programadoService:ProgramadoService,
-    private toastController: ToastController  ) { 
+    private toastController: ToastController,
+    private router: Router ) { 
       this.obtenerServiciosProgramados();
     }
 
@@ -31,6 +33,10 @@ export class ProgramadoPage implements OnInit {
     }, error => {
          console.log(error);
    });
+  }
+
+  redirect() {
+    this.router.navigate(['./programadodetalle']);
   }
 
   async mostrarMensaje(mensaje:string){
