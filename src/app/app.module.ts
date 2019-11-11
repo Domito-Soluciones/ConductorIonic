@@ -13,9 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';  
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { IonicStorageModule  } from '@ionic/storage';
-
-import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
-import { Geolocation } from '@ionic-native/geolocation';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 
 @NgModule({
@@ -31,7 +30,9 @@ import { Geolocation } from '@ionic-native/geolocation';
     StatusBar,
     SplashScreen,
     UniqueDeviceID,
+    Geolocation,
     BackgroundMode ,
+    LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ], 
   bootstrap: [AppComponent]

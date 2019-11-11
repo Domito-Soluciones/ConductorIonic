@@ -23,7 +23,8 @@ export class Constantes {
       })
     };
     public static uniqueId:any;
-
+    public static programados:any[];
+    
   constructor() {
 
   }

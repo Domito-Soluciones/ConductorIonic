@@ -1,4 +1,3 @@
-
 export class Conductor {
     id:string;
     nombre:string;
@@ -10,8 +9,8 @@ export class Conductor {
     activo:boolean;
     recordarSession:boolean ;
     servicios:any[];
-    //location:Object;
-    //locationDestino:Object;
+    location:Geolocation;
+    locationDestino:Geolocation;
     servicio:any;
     navegando:boolean;
     cantidadPasajeros:number;

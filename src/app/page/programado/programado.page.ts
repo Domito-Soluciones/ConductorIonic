@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ProgramadoService } from '../../service/programado.service';
 import { ToastController } from '@ionic/angular';
 import { Router, RouterEvent } from '@angular/router';
+import { Constantes } from '../../intercace/constantes';
 
 @Component({
   selector: 'app-programado',
@@ -11,7 +12,6 @@ import { Router, RouterEvent } from '@angular/router';
 })
 export class ProgramadoPage implements OnInit {
 
-  programados:any[];
   respuestaProgramado:Observable<any>;
 
   constructor(private programadoService:ProgramadoService,
@@ -26,8 +26,8 @@ export class ProgramadoPage implements OnInit {
   obtenerServiciosProgramados(){
     this.respuestaProgramado = this.programadoService.obtenererviciosProgramados();
     this.respuestaProgramado.subscribe(data => {
-      this.programados = data;
-      if(this.programados.length === 0){
+      Constantes.programados = data;
+      if(Constantes.programados.length === 0){
         this.mostrarMensaje("No hay servicios programados");
       }
     }, error => {
