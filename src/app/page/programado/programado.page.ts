@@ -13,6 +13,7 @@ import { Constantes } from '../../intercace/constantes';
 export class ProgramadoPage implements OnInit {
 
   respuestaProgramado:Observable<any>;
+  programados:any[];
 
   constructor(private programadoService:ProgramadoService,
     private toastController: ToastController,
@@ -26,8 +27,8 @@ export class ProgramadoPage implements OnInit {
   obtenerServiciosProgramados(){
     this.respuestaProgramado = this.programadoService.obtenererviciosProgramados();
     this.respuestaProgramado.subscribe(data => {
-      Constantes.programados = data;
-      if(Constantes.programados.length === 0){
+    this.programados = data;
+      if(this.programados.length === 0){
         this.mostrarMensaje("No hay servicios programados");
       }
     }, error => {

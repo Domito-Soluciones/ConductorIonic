@@ -168,9 +168,9 @@ manejarNotificaciones(array:any[]){
             else if(tipo === "1")
             {
                 let fecha = array[i].notificacion_fecha;
-                let date = fecha.getTime();
+                let date = new Date(fecha);
                 let dateNow = new Date().getTime();
-                if(Math.abs(date - dateNow) < 1.8e+6) {
+                if(Math.abs(date.getTime() - dateNow) < 1.8e+6) {
                   this.localNotifications.schedule({
                     id: id,
                     text: array[i].notificacion_texto,
