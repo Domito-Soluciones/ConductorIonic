@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProgramadoService } from '../../service/programado.service';
 import { ToastController } from '@ionic/angular';
-import { Router, RouterEvent } from '@angular/router';
+import { Router, RouterEvent, NavigationExtras } from '@angular/router';
 import { Constantes } from '../../intercace/constantes';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
@@ -29,7 +29,6 @@ export class ProgramadoPage implements OnInit {
     this.respuestaProgramado = this.programadoService.obtenererviciosProgramados();
     this.respuestaProgramado.subscribe(data => {
       Constantes.programados = data;
-      alert(Constantes.programados.length);
       if(Constantes.programados.length === 0){
           this.mostrarMensaje("No hay servicios programados");
       }
@@ -52,7 +51,7 @@ export class ProgramadoPage implements OnInit {
   }
 
   redirect(id) {
-    this.router.navigate(['./detalle?id='+id]);
+    this.router.navigate(['./detalle/'+id]);
   }
 
   get programados() {

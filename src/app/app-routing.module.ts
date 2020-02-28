@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: './page/login/login.module#LoginPageModule' },
   { path: 'menu', loadChildren: './page/menu/menu.module#MenuPageModule' },
   { path: 'salir', loadChildren: './page/salir/salir.module#SalirPageModule' },
-  { path: 'detalle', loadChildren: './page/programadodetalle/programadodetalle.module#ProgramadodetallePageModule' }
+  { path: 'detalle:id', loadChildren: './page/programadodetalle/programadodetalle.module#ProgramadodetallePageModule' }
 
 ];  
 

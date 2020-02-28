@@ -1,7 +1,7 @@
 <ion-header>Servicio Programados</ion-header>
 <ion-content>
     <ion-list>
-        <ion-item style="cursor: pointer;" *ngFor="let item of programados" (click)="redirect()">
+        <ion-item style="cursor: pointer;" *ngFor="let item of programados" (click)="redirect(item.servicio_id)">
             <div>
                 <ion-img class="inicio" src="./assets/arriba.png"></ion-img>
             </div>

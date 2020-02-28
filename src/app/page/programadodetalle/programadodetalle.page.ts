@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ProgramadodetalleService } from '../../service/programadodetalle.service';
 import { ToastController } from '@ionic/angular';
 import { Constantes } from 'src/app/intercace/constantes';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-programadodetalle',
@@ -14,7 +14,7 @@ export class ProgramadodetallePage implements OnInit {
 
   programadoDetalle:any[];
   respuestaProgramadoDetalle:Observable<any>;
-  idServicio
+  idServicio:any;
 
   constructor(private programadodetalleService:ProgramadodetalleService,
               private toastController: ToastController,
@@ -22,7 +22,9 @@ export class ProgramadodetallePage implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
-      this.idServicio = params['id'];
+      this.idServicio = this.activatedRoute.snapshot.paramMap.get("id")
+      //this.idServicio = '10898';
+      this.obtenerServiciosProgramadoDetalle();
   });
   }
 
