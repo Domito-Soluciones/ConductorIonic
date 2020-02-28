@@ -4,6 +4,7 @@ import { ProgramadoService } from '../../service/programado.service';
 import { ToastController } from '@ionic/angular';
 import { Router, RouterEvent } from '@angular/router';
 import { Constantes } from '../../intercace/constantes';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-programado',
@@ -13,7 +14,7 @@ import { Constantes } from '../../intercace/constantes';
 export class ProgramadoPage implements OnInit {
 
   respuestaProgramado:Observable<any>;
-  programados:any[];
+  servicioActual:number;
 
   constructor(private programadoService:ProgramadoService,
     private toastController: ToastController,
@@ -27,17 +28,35 @@ export class ProgramadoPage implements OnInit {
   obtenerServiciosProgramados(){
     this.respuestaProgramado = this.programadoService.obtenererviciosProgramados();
     this.respuestaProgramado.subscribe(data => {
-    this.programados = data;
-      if(this.programados.length === 0){
-        this.mostrarMensaje("No hay servicios programados");
+      Constantes.programados = data;
+      alert(Constantes.programados.length);
+      if(Constantes.programados.length === 0){
+          this.mostrarMensaje("No hay servicios programados");
+      }
+      else{
+        var idAux = '';
+        for(var i = 0; i < Constantes.programados.length;i++){
+          let id = data.servicio_id;
+          if(idAux === id){
+            Constantes.programados.splice(i, 1);
+             idAux = ''
+          }
+          else{
+            idAux = id;
+          }
+        }
       }
     }, error => {
          console.log(error);
    });
   }
 
-  redirect() {
-    this.router.navigate(['./programadodetalle']);
+  redirect(id) {
+    this.router.navigate(['./detalle?id='+id]);
+  }
+
+  get programados() {
+    return Constantes.programados;
   }
 
   async mostrarMensaje(mensaje:string){
