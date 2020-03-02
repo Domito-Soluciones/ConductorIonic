@@ -16,7 +16,7 @@
                 <div>Cliente</div>
             </ion-col>
             <ion-col>
-                <div id="cliente"></div>
+                <div id="cliente">{{item.servicio_cliente}}</div>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -24,7 +24,7 @@
                 <div>Fecha</div>
             </ion-col>
             <ion-col>
-                <div id="fecha"></div>
+                <div #fecha>{{item.servicio_fecha}}</div>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -32,7 +32,7 @@
                 <div>Hora</div>
             </ion-col>
             <ion-col>
-                <div id="hora"></div>
+                <div #hora>{{item.servicio_hora}}</div>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -40,7 +40,7 @@
                 <div>Ruta</div>
             </ion-col>
             <ion-col>
-                <div id="ruta"></div>
+                <div id="ruta">{{item.servicio_ruta}}</div>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -48,7 +48,7 @@
                 <div>Tipo Ruta</div>
             </ion-col>
             <ion-col>
-                <div id="tipoRuta"></div>
+                <div id="tipoRuta">{{item.servicio_truta}}</div>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -56,7 +56,7 @@
                 <div>Tarifa</div>
             </ion-col>
             <ion-col>
-                <div id="tarifa"></div>
+                <div id="tarifa">{{item.servicio_tarifa}}</div>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -64,7 +64,7 @@
                 <div>Pasajeros</div>
             </ion-col>
             <ion-col>
-                <div id="pasajeros"></div>
+                <div id="pasajeros">{{cantidad}}</div>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -72,8 +72,21 @@
                 <div>Observaciones</div>
             </ion-col>
             <ion-col>
-                <div id="observaciones"></div>
+                <div id="observaciones">{{item.servicio_observacion}}</div>
             </ion-col>
         </ion-row>
     </ion-grid>
+    <ion-list>
+        <ion-item style="cursor: pointer;" *ngFor="let item of programados;" (click)="redirect(item.servicio_id)">
+            <div class="cont_info">
+                {{item.servicio_pasajero_nombre}}
+                <br> {{item.servicio_destino}}
+            </div>
+            <div>
+                <ion-img class="inicio" src="./assets/telefono.png"></ion-img>
+            </div>
+        </ion-item>
+    </ion-list>
+    <ion-img class="img-boton" (click)="aceptarServicio()" src="./assets/okverde.png"></ion-img>
+    <ion-img class="img-boton" (click)="cancelarServicio()" src="./assets/cerrar.png"></ion-img>
 </ion-content>

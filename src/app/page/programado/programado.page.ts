@@ -4,7 +4,6 @@ import { ProgramadoService } from '../../service/programado.service';
 import { ToastController } from '@ionic/angular';
 import { Router, RouterEvent, NavigationExtras } from '@angular/router';
 import { Constantes } from '../../intercace/constantes';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-programado',
@@ -33,7 +32,7 @@ export class ProgramadoPage implements OnInit {
           this.mostrarMensaje("No hay servicios programados");
       }
       else{
-        var idAux = '';
+        /*var idAux = '';
         for(var i = 0; i < Constantes.programados.length;i++){
           let id = data.servicio_id;
           if(idAux === id){
@@ -43,7 +42,7 @@ export class ProgramadoPage implements OnInit {
           else{
             idAux = id;
           }
-        }
+        }*/
       }
     }, error => {
          console.log(error);

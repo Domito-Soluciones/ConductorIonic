@@ -81,7 +81,17 @@ export class BackGroundService {
     this.respuestaProgramado = this.programadoService.obtenererviciosProgramados();
       this.respuestaProgramado.subscribe(data => {
         Constantes.programados = data;
-        console.log(data.length);
+        /*var idAux = '';
+        for(var i = 0; i < Constantes.programados.length;i++){
+          let id = data.servicio_id;
+          if(idAux === id){
+            Constantes.programados.splice(i, 1);
+             idAux = ''
+          }
+          else{
+            idAux = id;
+          }
+        }*/
       }, error => {
            console.log(error);
      });
