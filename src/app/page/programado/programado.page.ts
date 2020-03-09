@@ -54,6 +54,7 @@ export class ProgramadoPage implements OnInit {
   }
 
   get programados() {
+    
     return Constantes.programados;
   }
 
@@ -65,4 +66,6 @@ export class ProgramadoPage implements OnInit {
     toast.present();
   }
 
+
+  
 }

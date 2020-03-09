@@ -1,10 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProgramadodetalleService } from '../../service/programadodetalle.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController,AlertController } from '@ionic/angular';
 import { Constantes } from 'src/app/intercace/constantes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AceptarServicioService } from 'src/app/service/aceptar-servicio.service';
+import { DesasignarServicioService } from 'src/app/service/desasignar-servicio.service';
 
 @Component({
   selector: 'app-programadodetalle',
@@ -27,7 +28,9 @@ export class ProgramadodetallePage implements OnInit {
               private toastController: ToastController,
               private activatedRoute: ActivatedRoute, 
               private router: Router,
-              private aceptarServicioService:AceptarServicioService ) { }
+              private aceptarServicioService:AceptarServicioService,
+              private desasignarServicioService:DesasignarServicioService,
+              private alertCtrl: AlertController ) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -87,8 +90,27 @@ export class ProgramadodetallePage implements OnInit {
     
   }
 
-  cancelarServicio(){
-    let resp  = confirm("esta seguro");
+  async cancelarServicio(){
+    const alert = await this.alertCtrl.create({
+      message: '¿Esta seguro que desea rechazar este servicio?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'No',
+          handler: () => {
+           
+          }
+        },
+        {
+          text: 'Si',
+          handler: () => {
+              this.desasignarServicioService.desasignarServicio(this.idServicio);
+              this.router.navigate(['./menu/programado']);
+          }
+        }
+      ]
+   });
+   await alert.present(); 
   }
 
 
