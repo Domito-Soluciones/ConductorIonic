@@ -1,11 +1,12 @@
 <ion-header>
+    <ion-img class="img-volver" (click)="volver() " src="./assets/atras.png "></ion-img>
     Detalle Servicio
 </ion-header>
 <ion-content *ngFor="let item of programadoDetalle">
     <ion-grid>
         <ion-row>
             <ion-col>
-                <div>ID</div>
+                <div class="negrita">ID</div>
             </ion-col>
             <ion-col>
                 <div id="id">{{item.servicio_id}}</div>
@@ -13,7 +14,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <div>Cliente</div>
+                <div class="negrita">Cliente</div>
             </ion-col>
             <ion-col>
                 <div id="cliente">{{item.servicio_cliente}}</div>
@@ -21,7 +22,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <div>Fecha</div>
+                <div class="negrita">Fecha</div>
             </ion-col>
             <ion-col>
                 <div #fecha>{{item.servicio_fecha}}</div>
@@ -29,7 +30,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <div>Hora</div>
+                <div class="negrita">Hora</div>
             </ion-col>
             <ion-col>
                 <div #hora>{{item.servicio_hora}}</div>
@@ -37,7 +38,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <div>Ruta</div>
+                <div class="negrita">Ruta</div>
             </ion-col>
             <ion-col>
                 <div id="ruta">{{item.servicio_ruta}}</div>
@@ -45,7 +46,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <div>Tipo Ruta</div>
+                <div class="negrita">Tipo Ruta</div>
             </ion-col>
             <ion-col>
                 <div id="tipoRuta">{{item.servicio_truta}}</div>
@@ -53,7 +54,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <div>Tarifa</div>
+                <div class="negrita">Tarifa</div>
             </ion-col>
             <ion-col>
                 <div id="tarifa">{{item.servicio_tarifa}}</div>
@@ -61,7 +62,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <div>Pasajeros</div>
+                <div class="negrita">Pasajeros</div>
             </ion-col>
             <ion-col>
                 <div id="pasajeros">{{cantidad}}</div>
@@ -69,7 +70,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <div>Observaciones</div>
+                <div class="negrita">Observaciones</div>
             </ion-col>
             <ion-col>
                 <div id="observaciones">{{item.servicio_observacion}}</div>
@@ -77,16 +78,23 @@
         </ion-row>
     </ion-grid>
     <ion-list>
-        <ion-item style="cursor: pointer;" *ngFor="let item of programados;" (click)="redirect(item.servicio_id)">
-            <div class="cont_info">
-                {{item.servicio_pasajero_nombre}}
-                <br> {{item.servicio_destino}}
+        <ion-item style="cursor: pointer;" *ngFor="let item of pasajeros">
+            <div class=" cont_info ">
+                {{item.pasajero_nombre}}
+                <br> {{item.pasajero_destino}}
             </div>
             <div>
-                <ion-img class="inicio" src="./assets/telefono.png"></ion-img>
+                <ion-img class="inicio " src="./assets/telefono.png " (click)="llamar(item.pasajero_celular)"></ion-img>
             </div>
         </ion-item>
     </ion-list>
-    <ion-img class="img-boton" (click)="aceptarServicio()" src="./assets/okverde.png"></ion-img>
-    <ion-img class="img-boton" (click)="cancelarServicio()" src="./assets/cerrar.png"></ion-img>
+    <div class="contenedor_boton" *ngIf="estado == 1 || estado == 3">
+        <ion-img class="img-boton " (click)="aceptarServicio() " src="./assets/okverde.png "></ion-img>
+    </div>
+    <div class="contenedor_boton" *ngIf="estado == 1 || estado == 3">
+        <ion-img class="img-boton " (click)="cancelarServicio() " src="./assets/cerrar.png "></ion-img>
+    </div>
+    <div class="contenedor_boton continuar" *ngIf="estado == 4">
+        <ion-img class="img-boton " (click)="aceptarServicio() " src="./assets/okazul.png "></ion-img>
+    </div>
 </ion-content>

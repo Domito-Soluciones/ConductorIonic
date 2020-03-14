@@ -33,7 +33,16 @@ ion-footer {
     height: 60px;
     line-height: 60px;
     text-align: center;
-    padding-right: 20%;
+    padding-right: 0%;
+}
+
+.img-volver {
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    cursor: pointer;
 }
 
 ion-header {
@@ -41,7 +50,8 @@ ion-header {
     height: 60px;
     line-height: 60px;
     text-align: center;
-    background-color: #DFF0F2;
+    background-color: #253ca1;
+    color: white;
     font-size: 20px;
 }
 

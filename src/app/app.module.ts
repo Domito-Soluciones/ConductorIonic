@@ -15,6 +15,7 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { IonicStorageModule  } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
     Geolocation,
     BackgroundMode ,
     LocalNotifications,
+    CallNumber,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ], 
   bootstrap: [AppComponent]

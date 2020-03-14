@@ -3,6 +3,23 @@
 }
 
 .img-boton {
-    width: 30px;
+    width: 50px;
     cursor: pointer;
+}
+
+.negrita {
+    font-weight: bold;
+}
+
+.contenedor_boton {
+    display: inline-block;
+    width: 45%;
+}
+
+.contenedor_boton ion-img {
+    margin: auto;
+}
+
+.continuar {
+    width: 90% !important;
 }

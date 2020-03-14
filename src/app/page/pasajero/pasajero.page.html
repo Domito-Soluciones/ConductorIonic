@@ -1,7 +1,9 @@
-<ion-header>Servicio Iniciado</ion-header>
+<ion-header>
+    <ion-img class="img-volver" (click)="volver() " src="./assets/atras.png "></ion-img>
+    Servicio Iniciado</ion-header>
 <ion-content>
     <ion-list>
-        <ion-item style="cursor: pointer;" *ngFor="let item of programados;" (click)="redirect(item.servicio_id)">
+        <ion-item style="cursor: pointer;" *ngFor="let item of []">
             <div>
                 <ion-img class="inicio" src="./assets/arriba.png"></ion-img>
             </div>

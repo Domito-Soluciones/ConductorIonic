@@ -7,7 +7,7 @@ import { ToastController } from '@ionic/angular';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { Constantes } from '../../intercace/constantes';
 import { Observable } from 'rxjs';
-//import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -25,8 +25,8 @@ export class LoginPage implements OnInit {
     private router: Router,
     private toastController: ToastController,
     private uniqueDeviceID: UniqueDeviceID,
-    private backGroundService: BackGroundService
-        //private storage: Storage
+    private backGroundService: BackGroundService,
+    private storage: Storage
     ){
       
   }
@@ -45,6 +45,7 @@ export class LoginPage implements OnInit {
       this.respuestaLogin = this.loginService.login(usuario,clave);
       this.respuestaLogin.subscribe(data => {
           let id = data.conductor_id;
+          let nombre = data.conductor_nombre;
           let dispositivo = data.conductor_equipo;
           if (id !== 0) {
 
@@ -57,12 +58,14 @@ export class LoginPage implements OnInit {
               Constantes.conductor.activo = true;
               Constantes.conductor.nick = usuario;
               //this.modificarEstadoMovil();
+              this.storage.set("idUsuario", id);
+              this.storage.set("nickUsuario",usuario);
+              this.storage.set("claveUsuario", clave);
+              this.storage.set("nombreUsuario",nombre);
               if (Constantes.conductor.recordarSession) {
-                //this.storage.set("idUsuario", usuario);
-                //this.storage.set("claveUsuario",clave);
+                this.storage.set("recordar","1");
               } else {
-                //this.storage.remove("idUsuario");
-                //this.storage.remove("claveUsuario");
+                this.storage.set("recordar","0");
               }
 
               this.router.navigateByUrl("menu/programado");

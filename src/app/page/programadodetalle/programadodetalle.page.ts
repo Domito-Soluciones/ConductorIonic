@@ -6,6 +6,7 @@ import { Constantes } from 'src/app/intercace/constantes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AceptarServicioService } from 'src/app/service/aceptar-servicio.service';
 import { DesasignarServicioService } from 'src/app/service/desasignar-servicio.service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-programadodetalle',
@@ -20,6 +21,7 @@ export class ProgramadodetallePage implements OnInit {
   cantidad:number;
   programados:any[];
   estado:any;
+  pasajeros:any[] = [];
 
   @ViewChild("fecha", {static: false}) fecha: ElementRef;
   @ViewChild("hora", {static: false}) hora: ElementRef;
@@ -30,7 +32,8 @@ export class ProgramadodetallePage implements OnInit {
               private router: Router,
               private aceptarServicioService:AceptarServicioService,
               private desasignarServicioService:DesasignarServicioService,
-              private alertCtrl: AlertController ) { }
+              private alertCtrl: AlertController,
+              private callNumber: CallNumber ) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -45,6 +48,10 @@ export class ProgramadodetallePage implements OnInit {
     this.programados = aux;
     let j = 0;
     for(var i = 0 ; i < aux.length;i++){
+        let pjro = {"pasajero_nombre" : aux[i].servicio_pasajero_nombre,
+                  "pasajero_celular" : aux[i].servicio_pasajero_celular,
+                  "pasajero_destino": aux[i].servicio_destino}
+        this.pasajeros.push(pjro);
       if(aux[i].servicio_observacion === ''){
         aux[i].servicio_observacion = 'Sin observaciones';
       }
@@ -68,24 +75,25 @@ export class ProgramadodetallePage implements OnInit {
   }
 
 
-  aceptarServicio(id){
+  aceptarServicio(){
     //agregr cancelar todas las notificaciones
     if(this.estado === '1'){
-      this.aceptarServicioService.cambiarEstadoServicio(id,'3','');
+      this.aceptarServicioService.cambiarEstadoServicio(this.idServicio,'3','');
+      this.router.navigate(['./menu/programado/']);
     }
     else if(this.estado === '3'){
       let now = new Date().getMilliseconds();
       let fecha = new Date(this.fecha+" "+this.hora).getMilliseconds();
       if(fecha < 3600000 && fecha < now){
-        this.aceptarServicioService.cambiarEstadoServicio(id,'4','');
-        this.router.navigate(['./pasajero/'+id]);
+        this.aceptarServicioService.cambiarEstadoServicio(this.idServicio,'4','');
+        this.router.navigate(['./pasajero/'+this.idServicio]);
       }
       else{
         this.mostrarMensaje("Falta mas de 1 hora para el inicio del servicio");
       }
     }
     else if(this.estado === '4'){
-      this.router.navigate(['./pasajero/'+id]);
+      this.router.navigate(['./pasajero/'+this.idServicio]);
     }
     
   }
@@ -113,5 +121,18 @@ export class ProgramadodetallePage implements OnInit {
    await alert.present(); 
   }
 
+  continuarServicio(){
+    
+  }
+
+   llamar(numero){
+     this.callNumber.callNumber(numero, true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+   }
+
+  volver(){
+    this.router.navigate(['./menu/programado']);
+  }
 
 }
