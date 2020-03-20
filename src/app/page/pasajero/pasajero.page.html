@@ -1,18 +1,29 @@
 <ion-header>
     <ion-img class="img-volver" (click)="volver() " src="./assets/atras.png "></ion-img>
-    Servicio Iniciado</ion-header>
+    Servicio Iniciado
+</ion-header>
 <ion-content>
     <ion-list>
-        <ion-item style="cursor: pointer;" *ngFor="let item of []">
+        <ion-item style="cursor: pointer;" *ngFor="let item of servicio">
             <div>
-                <ion-img class="inicio" src="./assets/arriba.png"></ion-img>
-            </div>
-            <div>
-                <span class="id"> {{item.servicio_id}}</span>
-            </div>
-            <div>
-                <div><span class="id">{{item.servicio_cliente}}</span></div>
-                <div class="fecha">{{item.servicio_fecha}} {{item.servicio_hora}}</div>
+                <span>
+                    Nombre
+                </span>
+                <span>
+                    {{item.servicio_pasajero_nombre}}
+                </span>
+                <br>
+                <span>
+                    Dirección
+                </span>
+                <span>
+                    {{item.servicio_destino}}
+                </span>
+                <br>
+                <ion-img style="float: left;" class="inicio" src="./assets/telefono.png" (click)="llamar(item.servicio_pasajero_celular)"></ion-img>
+                <ion-img style="float: left;" class="inicio" src="./assets/navegar.png" (click)="navegar(item.servicio_destino)"></ion-img>
+                <ion-img style="float: left;" class="inicio" src="./assets/confirmar.png"></ion-img>
+                <ion-img style="float: left;" class="inicio" src="./assets/cerrar.png"></ion-img>
             </div>
         </ion-item>
 

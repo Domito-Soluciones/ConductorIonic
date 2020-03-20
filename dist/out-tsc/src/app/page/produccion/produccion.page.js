@@ -8,12 +8,17 @@ let ProduccionPage = class ProduccionPage {
         this.toastController = toastController;
         this.imagen = "./assets/produccion.png";
         this.total = 0;
+        this.obtenerProduccion();
     }
     ngOnInit() {
     }
     obtenerProduccion() {
         this.respuestaProduccion = this.produccionService.obtenerProduccion();
         this.respuestaProduccion.subscribe(data => {
+            this.produccion = data;
+            if (this.produccion.length === 0) {
+                this.mostrarMensaje("No hay producción registrada");
+            }
         }, error => {
             console.log(error);
         });

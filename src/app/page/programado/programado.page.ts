@@ -25,7 +25,6 @@ export class ProgramadoPage implements OnInit {
   }
 
   obtenerServiciosProgramados(){
-    alert(Constantes.conductor.id);
     this.respuestaProgramado = this.programadoService.obtenererviciosProgramados();
     this.respuestaProgramado.subscribe(data => {
       Constantes.programados = data;

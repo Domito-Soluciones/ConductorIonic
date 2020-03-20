@@ -21,6 +21,8 @@ export class ProgramadodetallePage implements OnInit {
   cantidad:number;
   programados:any[];
   estado:any;
+  fechaServicio:string;
+  horaServicio:string;
   pasajeros:any[] = [];
 
   @ViewChild("fecha", {static: false}) fecha: ElementRef;
@@ -56,6 +58,9 @@ export class ProgramadodetallePage implements OnInit {
         aux[i].servicio_observacion = 'Sin observaciones';
       }
       this.estado = aux[i].servicio_estado;
+      let arreglo = aux[i].servicio_fecha.split("-");
+      this.fechaServicio = arreglo[2] + "-" + arreglo[1] + "-"+ arreglo[0];
+      this.horaServicio = aux[i].servicio_hora;
       if(aux[i].servicio_id === this.idServicio){
         j++;
         if(this.programadoDetalle.length === 0){
@@ -82,9 +87,9 @@ export class ProgramadodetallePage implements OnInit {
       this.router.navigate(['./menu/programado/']);
     }
     else if(this.estado === '3'){
-      let now = new Date().getMilliseconds();
-      let fecha = new Date(this.fecha+" "+this.hora).getMilliseconds();
-      if(fecha < 3600000 && fecha < now){
+      let now = Math.round(new Date().getTime()/1000);
+      let fecha = new Date(this.fechaServicio+" "+this.horaServicio).getTime() / 1000;
+      if((fecha - now) <= 36000 &&  now < fecha){
         this.aceptarServicioService.cambiarEstadoServicio(this.idServicio,'4','');
         this.router.navigate(['./pasajero/'+this.idServicio]);
       }

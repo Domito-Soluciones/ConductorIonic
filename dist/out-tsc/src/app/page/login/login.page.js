@@ -2,20 +2,21 @@ import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../service/login.service';
+import { BackGroundService } from '../../service/back-ground.service';
 import { ModEstadoMovilService } from '../../service/mod-estado-movil.service';
 import { ToastController } from '@ionic/angular';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { Constantes } from '../../intercace/constantes';
-//import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 let LoginPage = class LoginPage {
-    constructor(loginService, modEstadoMovil, router, toastController, uniqueDeviceID
-    //private storage: Storage
-    ) {
+    constructor(loginService, modEstadoMovil, router, toastController, uniqueDeviceID, backGroundService, storage) {
         this.loginService = loginService;
         this.modEstadoMovil = modEstadoMovil;
         this.router = router;
         this.toastController = toastController;
         this.uniqueDeviceID = uniqueDeviceID;
+        this.backGroundService = backGroundService;
+        this.storage = storage;
     }
     ngOnInit() {
         this.uniqueDeviceID.get()
@@ -30,23 +31,27 @@ let LoginPage = class LoginPage {
             this.respuestaLogin = this.loginService.login(usuario, clave);
             this.respuestaLogin.subscribe(data => {
                 let id = data.conductor_id;
+                let nombre = data.conductor_nombre;
                 let dispositivo = data.conductor_equipo;
                 if (id !== 0) {
                     if (dispositivo !== "" && dispositivo !== Constantes.uniqueId) {
                         this.mostrarMensaje("Usuario activo en otro dispositivo");
                     }
                     else {
+                        this.backGroundService.iniciar();
                         Constantes.conductor.id = id;
                         Constantes.conductor.activo = true;
                         Constantes.conductor.nick = usuario;
                         //this.modificarEstadoMovil();
+                        this.storage.set("idUsuario", id);
+                        this.storage.set("nickUsuario", usuario);
+                        this.storage.set("claveUsuario", clave);
+                        this.storage.set("nombreUsuario", nombre);
                         if (Constantes.conductor.recordarSession) {
-                            //this.storage.set("idUsuario", usuario);
-                            //this.storage.set("claveUsuario",clave);
+                            this.storage.set("recordar", "1");
                         }
                         else {
-                            //this.storage.remove("idUsuario");
-                            //this.storage.remove("claveUsuario");
+                            this.storage.set("recordar", "0");
                         }
                         this.router.navigateByUrl("menu/programado");
                     }
@@ -94,9 +99,9 @@ LoginPage = tslib_1.__decorate([
         ModEstadoMovilService,
         Router,
         ToastController,
-        UniqueDeviceID
-        //private storage: Storage
-    ])
+        UniqueDeviceID,
+        BackGroundService,
+        Storage])
 ], LoginPage);
 export { LoginPage };
 //# sourceMappingURL=login.page.js.map

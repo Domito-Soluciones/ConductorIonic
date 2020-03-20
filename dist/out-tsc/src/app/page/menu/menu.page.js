@@ -27,7 +27,7 @@ let MenuPage = class MenuPage {
             },
             {
                 title: 'Cerrar Sesión',
-                url: '/menu/salir',
+                url: '../login',
                 img: './assets/logout.png'
             }
         ];

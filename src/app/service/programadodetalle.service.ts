@@ -12,10 +12,15 @@ export class ProgramadodetalleService {
 
   constructor(private http: HttpClient) { }
 
-  obtenererviciosProgramadoDetalle() {
+  obtenerServiciosProgramadoDetalle() {
     let params = new HttpParams()
     .set("conductor", Constantes.conductor.id)
     this.respuesta = this.http.post(Constantes.URL_BASE_SERVICIO+"GetServiciosProgramados.php", params, Constantes.httpOptions );
+    this.respuesta.subscribe(data => {
+
+    }, error => {
+     console.log(error);
+   });
     return this.respuesta;
   }
 

@@ -11,6 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { IonicStorageModule } from '@ionic/storage';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 let AppModule = class AppModule {
 };
 AppModule = tslib_1.__decorate([
@@ -28,7 +31,10 @@ AppModule = tslib_1.__decorate([
             StatusBar,
             SplashScreen,
             UniqueDeviceID,
+            Geolocation,
             BackgroundMode,
+            LocalNotifications,
+            CallNumber,
             { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
         ],
         bootstrap: [AppComponent]
