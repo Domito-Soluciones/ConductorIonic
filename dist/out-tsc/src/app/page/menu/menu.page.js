@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 let MenuPage = class MenuPage {
     constructor(router) {
         this.router = router;
-        this.pages = [
-            {
+        this.pages = [{
                 title: 'Programados',
                 url: '/menu/programado',
                 img: './assets/calendario.png'
@@ -34,12 +33,9 @@ let MenuPage = class MenuPage {
         this.selectedPath = '';
         this.router.events.subscribe((event) => {
             this.selectedPath = event.url;
-            console.log(this.selectedPath);
         });
-    }
-    ;
-    ngOnInit() {
-    }
+    };
+    ngOnInit() {}
 };
 MenuPage = tslib_1.__decorate([
     Component({

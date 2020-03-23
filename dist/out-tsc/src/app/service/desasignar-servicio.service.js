@@ -12,7 +12,6 @@ let DesasignarServicioService = class DesasignarServicioService {
             .set("estado", "1")
             .set("observacion", "");
         this.respuesta = this.http.post(Constantes.URL_BASE_SERVICIO + "ModEstadoServicio.php", params, Constantes.httpOptions);
-        console.log(this.respuesta);
         return this.respuesta;
     }
 };

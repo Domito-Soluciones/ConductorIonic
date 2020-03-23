@@ -17,6 +17,11 @@ export class CambiarEstadoNotificacionService {
     .set("id", id)
     .set("servicio",id);
     this.respuesta = this.http.post(Constantes.URL_BASE_NOTIFICACION+"ModEstadoNotificacion.php", params, Constantes.httpOptions );
+    this.respuesta.subscribe(data => {
+
+    }, error => {
+     console.log(error);
+   });
     return this.respuesta;
   }
 }

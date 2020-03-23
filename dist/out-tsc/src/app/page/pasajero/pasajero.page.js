@@ -25,7 +25,6 @@ let PasajeroPage = class PasajeroPage {
                 this.servicio.push(aux);
             }
         }
-        console.log(this.servicio.length);
     }
     volver() {
         this.router.navigate(['./menu/programado']);
@@ -38,7 +37,7 @@ let PasajeroPage = class PasajeroPage {
     navegar(destino) {
         let options = {
             start: 'London, ON'
-            //app: LaunchNavigator.APP.GOOGLE_MAPS 
+                //app: LaunchNavigator.APP.GOOGLE_MAPS 
         };
         this.launchNavigator.navigate(destino, options)
             .then(success => console.log('Launched navigator'), error => console.log('Error launching navigator', error));
@@ -53,7 +52,8 @@ PasajeroPage = tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [ActivatedRoute,
         Router,
         CallNumber,
-        LaunchNavigator])
+        LaunchNavigator
+    ])
 ], PasajeroPage);
 export { PasajeroPage };
 //# sourceMappingURL=pasajero.page.js.map

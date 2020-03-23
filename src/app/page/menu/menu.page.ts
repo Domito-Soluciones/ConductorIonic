@@ -41,7 +41,6 @@ export class MenuPage implements OnInit {
   constructor(private router: Router) {
     this.router.events.subscribe((event: RouterEvent) => {
       this.selectedPath = event.url;
-      console.log(this.selectedPath);
     }
     )};
 

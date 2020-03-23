@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProgramadoService } from '../../service/programado.service';
+import { ProgramadosService } from '../../service/programados.service';
 import { ToastController } from '@ionic/angular';
 import { Router, RouterEvent, NavigationExtras } from '@angular/router';
 import { Constantes } from '../../intercace/constantes';
@@ -15,7 +15,7 @@ export class ProgramadoPage implements OnInit {
   respuestaProgramado:Observable<any>;
   servicioActual:number;
 
-  constructor(private programadoService:ProgramadoService,
+  constructor(private programadoService:ProgramadosService,
     private toastController: ToastController,
     private router: Router ) { 
       this.obtenerServiciosProgramados();

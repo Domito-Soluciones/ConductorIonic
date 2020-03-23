@@ -18,6 +18,11 @@ export class ModEstadoMovilService {
     .set("estado", estado)
     .set("equipo", Constantes.uniqueId);
     this.respuesta = this.http.post(Constantes.URL_BASE_MOVIL+"ModEstadoMovil.php", params, Constantes.httpOptions );
+    this.respuesta.subscribe(data => {
+
+    }, error => {
+     console.log(error);
+    });
     return this.respuesta;
   }
 }

@@ -26,8 +26,11 @@ export class ProduccionService {
       .set("estado", "5")
       .set("conductor", Constantes.conductor.id);
     this.respuesta = this.http.post(Constantes.URL_BASE_LIQUIDACION+"GetProduccion.php", params, Constantes.httpOptions );
-    console.log(this.respuesta);
-    return this.respuesta;
+    this.respuesta.subscribe(data => {
+
+    }, error => {
+     console.log(error);
+   });    return this.respuesta;
   }
 }
 

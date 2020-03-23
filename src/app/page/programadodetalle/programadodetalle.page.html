@@ -84,17 +84,17 @@
                 <br> {{item.pasajero_destino}}
             </div>
             <div>
-                <ion-img class="inicio " src="./assets/telefono.png " (click)="llamar(item.pasajero_celular)"></ion-img>
+                <ion-img class="inicio" *ngIf="item.pasajero_celular != ''" src="./assets/telefono.png " (click)="llamar(item.pasajero_celular)"></ion-img>
             </div>
         </ion-item>
     </ion-list>
-    <div class="contenedor_boton" *ngIf="estado == 1 || estado == 3">
-        <ion-img class="img-boton " (click)="aceptarServicio() " src="./assets/okverde.png "></ion-img>
+    <div class="contenedor_boton" *ngIf="item.servicio_estado == 1 || item.servicio_estado == 3">
+        <ion-img class="img-boton " (click)="aceptarServicio(item.servicio_estado) " src="./assets/okverde.png "></ion-img>
     </div>
-    <div class="contenedor_boton" *ngIf="estado == 1 || estado == 3">
-        <ion-img class="img-boton " (click)="cancelarServicio() " src="./assets/cerrar.png "></ion-img>
+    <div class="contenedor_boton" *ngIf="item.servicio_estado == 1 || item.servicio_estado == 3">
+        <ion-img class="img-boton " (click)="cancelarServicio(item.servicio_estado) " src="./assets/cerrar.png "></ion-img>
     </div>
-    <div class="contenedor_boton continuar" *ngIf="estado == 4">
-        <ion-img class="img-boton " (click)="aceptarServicio() " src="./assets/okazul.png "></ion-img>
+    <div class="contenedor_boton continuar" *ngIf="item.servicio_estado == 4">
+        <ion-img class="img-boton " (click)="aceptarServicio(item.servicio_estado) " src="./assets/okazul.png "></ion-img>
     </div>
 </ion-content>

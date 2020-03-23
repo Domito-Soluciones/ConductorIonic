@@ -20,7 +20,6 @@ let ProduccionService = class ProduccionService {
             .set("estado", "5")
             .set("conductor", Constantes.conductor.id);
         this.respuesta = this.http.post(Constantes.URL_BASE_LIQUIDACION + "GetProduccion.php", params, Constantes.httpOptions);
-        console.log(this.respuesta);
         return this.respuesta;
     }
 };

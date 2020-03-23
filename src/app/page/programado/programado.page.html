@@ -1,23 +1,24 @@
 <ion-header>Servicio Programados</ion-header>
 <ion-content>
     <ion-list>
-        <ion-item style="cursor: pointer;" *ngFor="let item of programados;" (click)="redirect(item.servicio_id)">
-            <div>
-                <ion-img *ngIf="item.servicio_estado == 1" class="inicio" src="./assets/oknaranjo.png"></ion-img>
-                <ion-img *ngIf="item.servicio_estado == 3" class="inicio" src="./assets/okverde.png"></ion-img>
-                <ion-img *ngIf="item.servicio_estado == 4" class="inicio" src="./assets/okazul.png"></ion-img>
-            </div>
-            <div>
-                <span *ngIf="item.servicio_estado == 1" class="id naranjo"> {{item.servicio_id}}</span>
-                <span *ngIf="item.servicio_estado == 3" class="id verde"> {{item.servicio_id}}</span>
-                <span *ngIf="item.servicio_estado == 4" class="id azul"> {{item.servicio_id}}</span>
-            </div>
-            <div>
-                <div><span class="id">{{item.servicio_cliente}}</span></div>
-                <div class="fecha">{{item.servicio_fecha}} {{item.servicio_hora}}</div>
-            </div>
-        </ion-item>
-
+        <div *ngFor="let item of programados;">
+            <ion-item style="cursor: pointer;" *ngIf="item.servicio_pasajero_index == 0" (click)="redirect(item.servicio_id)">
+                <div>
+                    <ion-img *ngIf="item.servicio_estado == 1" class="inicio" src="./assets/oknaranjo.png"></ion-img>
+                    <ion-img *ngIf="item.servicio_estado == 3" class="inicio" src="./assets/okverde.png"></ion-img>
+                    <ion-img *ngIf="item.servicio_estado == 4" class="inicio" src="./assets/okazul.png"></ion-img>
+                </div>
+                <div>
+                    <span *ngIf="item.servicio_estado == 1" class="id naranjo"> {{item.servicio_id}}</span>
+                    <span *ngIf="item.servicio_estado == 3" class="id verde"> {{item.servicio_id}}</span>
+                    <span *ngIf="item.servicio_estado == 4" class="id azul"> {{item.servicio_id}}</span>
+                </div>
+                <div>
+                    <div><span class="id">{{item.servicio_cliente}}</span></div>
+                    <div class="fecha">{{item.servicio_fecha}} {{item.servicio_hora}}</div>
+                </div>
+            </ion-item>
+        </div>
     </ion-list>
 </ion-content>
 <ion-footer>

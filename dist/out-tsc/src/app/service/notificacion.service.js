@@ -10,7 +10,6 @@ let NotificacionService = class NotificacionService {
         let params = new HttpParams()
             .set("llave", Constantes.conductor.id);
         this.respuesta = this.http.post(Constantes.URL_BASE_NOTIFICACION + "GetNotificaciones.php", params, Constantes.httpOptions);
-        console.log(this.respuesta);
         return this.respuesta;
     }
 };

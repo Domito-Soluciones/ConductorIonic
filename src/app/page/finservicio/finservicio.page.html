@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-img class="img-volver" (click)="volver() " src="./assets/atras.png "></ion-img>
+    Fin Servicio
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <div class="negrita">Servicio Finalizado</div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <div id="id">{{id}}</div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <div class="negrita">Cliente</div>
+            </ion-col>
+            <ion-col>
+                <div id="id">{{cliente}}</div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <div class="negrita">Fecha</div>
+            </ion-col>
+            <ion-col>
+                <div id="cliente">{{fecha}}</div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <div class="negrita">Tarifa</div>
+            </ion-col>
+            <ion-col>
+                <div>{{tarifa}}</div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-textarea #observacion>
+        Comentarios adicionales
+    </ion-textarea>
+    <ion-button class="boton" (click)="finalizar()">
+        GUARDAR Y FINALIZAR
+    </ion-button>
+</ion-content>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { Platform } from '@ionic/angular';
 import { Constantes } from '../intercace/constantes';
-import { ProgramadoService } from './programado.service';
+import { ProgramadosService } from './programados.service';
 import { Observable } from 'rxjs';
 import { NotificacionService } from './notificacion.service';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
@@ -16,7 +16,7 @@ export class BackGroundService {
   constructor(private platform: Platform,
               private backgroundMode: BackgroundMode,
               private localNotifications:LocalNotifications,
-              private programadoService:ProgramadoService,
+              private programadoService:ProgramadosService,
               private notificacionService:NotificacionService,
               private cambiarEstadoNotificacion:CambiarEstadoNotificacionService) { 
   }

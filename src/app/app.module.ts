@@ -16,6 +16,7 @@ import { IonicStorageModule  } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { LaunchNavigator } from '@ionic-native/launch-navigator/ngx';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
   providers: [
     StatusBar,
     SplashScreen,
+    LaunchNavigator,
     UniqueDeviceID,
     Geolocation,
     BackgroundMode ,

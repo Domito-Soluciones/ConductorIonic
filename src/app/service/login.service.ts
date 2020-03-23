@@ -20,6 +20,11 @@ export class LoginService {
       .set("usuario", usuario)
       .set("password", btoa(clave));
     this.respuesta = this.http.post(Constantes.URL_BASE_CONDUCTOR+"Login.php", params, Constantes.httpOptions );
+    this.respuesta.subscribe(data => {
+
+    }, error => {
+     console.log(error);
+   });
     return this.respuesta;
   }
 
