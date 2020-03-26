@@ -36,14 +36,20 @@
         "@mauron85/cordova-plugin-background-geolocation": "^3.0.5",
         "call-number": "1.0.1",
         "cordova-android": "8.0.0",
+        "cordova-ios": "5.1.1",
+        "cordova-plugin-actionsheet": "^2.3.3",
+        "cordova-plugin-add-swift-support": "^2.0.2",
         "cordova-plugin-background-mode": "^0.7.2",
         "cordova-plugin-badge": "^0.8.8",
+        "cordova-plugin-dialogs": "^2.0.2",
         "cordova-plugin-geolocation": "4.0.2",
         "cordova-plugin-local-notification": "^0.9.0-beta.2",
+        "cordova-plugin-mauron85-background-geolocation": "^3.0.1",
         "cordova-plugin-nativegeocoder": "3.2.2",
         "cordova-plugin-uniquedeviceid": "^1.3.2",
         "cordova-sqlite-storage": "3.2.1",
         "core-js": "^2.5.4",
+        "mx.ferreyra.callnumber": "0.0.2",
         "rxjs": "~6.5.1",
         "tslib": "^1.9.0",
         "uk.co.workingedge.phonegap.plugin.launchnavigator": "5.0.1",
@@ -68,7 +74,7 @@
         "cordova-plugin-ionic-webview": "^4.1.1",
         "cordova-plugin-splashscreen": "^5.0.2",
         "cordova-plugin-statusbar": "^2.4.2",
-        "cordova-plugin-whitelist": "^1.3.3",
+        "cordova-plugin-whitelist": "^1.3.4",
         "jasmine-core": "~3.4.0",
         "jasmine-spec-reporter": "~4.2.1",
         "karma": "^4.4.1",
@@ -95,18 +101,26 @@
                 "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
             },
             "cordova-plugin-ionic-keyboard": {},
-            "cordova-plugin-mauron85-background-geolocation": {},
+            "cordova-plugin-mauron85-background-geolocation": {
+                "ALWAYS_USAGE_DESCRIPTION": "This app always requires location tracking",
+                "MOTION_USAGE_DESCRIPTION": "This app requires motion detection"
+            },
             "cordova-plugin-geolocation": {},
             "cordova-plugin-local-notification": {},
             "mx.ferreyra.callnumber": {},
-            "cordova-plugin-nativegeocoder": {},
+            "cordova-plugin-nativegeocoder": {
+                "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service"
+            },
             "uk.co.workingedge.phonegap.plugin.launchnavigator": {
                 "GOOGLE_API_KEY_FOR_ANDROID": "1234",
-                "OKHTTP_VERSION": "3.+"
-            }
+                "OKHTTP_VERSION": "3.+",
+                "LOCATION_USAGE_DESCRIPTION": "This app requires access to your location for navigation purposes"
+            },
+            "call-number": {}
         },
         "platforms": [
-            "android"
+            "android",
+            "ios"
         ]
     }
 }
