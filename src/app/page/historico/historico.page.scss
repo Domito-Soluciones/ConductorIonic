@@ -3,11 +3,11 @@
     height: 50px;
 }
 
-
 .finalizado,
 .cancelado {
+    width: 40px;
+    height: 40px;
     margin-left: 20px;
-    margin-right: 40px;
 }
 
 .id {
@@ -22,4 +22,9 @@
 
 ion-item {
     height: 60px;
+}
+
+ion-header {
+    text-align: center !important;
+    padding-right: 0;
 }

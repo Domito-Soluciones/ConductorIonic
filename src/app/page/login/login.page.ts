@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
 
   respuestaLogin:Observable<any>;
   respuestaModMovil:Observable<any>;
+  recordar:boolean = false;
 
   constructor(
     private loginService:LoginService,
@@ -35,6 +36,16 @@ export class LoginPage implements OnInit {
     this.uniqueDeviceID.get()
     .then((uuid: any) =>Constantes.uniqueId = uuid)
     .catch((error: any) => console.log(">"+error));
+    this.storage.get('recordar').then((result) => {
+      if(result === "1"){
+        this.recordar = true;
+        if(!this.backGroundService.isActivo()){
+          this.backGroundService.iniciar();
+          this.router.navigateByUrl("menu/programado");
+        }
+      }
+    });
+    
   }
 
   login(usuario:string, clave:string){

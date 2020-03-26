@@ -17,11 +17,6 @@ export class CambiarEstadoPasajerosService {
     .set("idServicio", id)
     .set("estado",estado);
     this.respuesta = this.http.post(Constantes.URL_BASE_SERVICIO+"ModEstadoServicioPasajeros.php", params, Constantes.httpOptions );
-    this.respuesta.subscribe(data => {
-
-    }, error => {
-     console.log(error);
-   });
     return this.respuesta;
   }
 }

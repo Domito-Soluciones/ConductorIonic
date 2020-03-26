@@ -15,8 +15,8 @@ export class Conductor {
     navegando:boolean;
     cantidadPasajeros:number;
     volver:boolean;
-    zarpeIniciado:boolean;
-    pasajeroRecogido:boolean;
-    pasajeroRepartido:boolean;
+    zarpeIniciado:boolean = false;
+    pasajeroRecogido:boolean = false;
+    pasajeroRepartido:boolean = false;
   
 }

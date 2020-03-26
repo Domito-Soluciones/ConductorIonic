@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HistoricoService } from '../../service/historico.service';
 import { Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-historico',
@@ -14,7 +15,9 @@ export class HistoricoPage implements OnInit {
   respuestaHistorico:Observable<any>;
   historico:any[];
 
-  constructor(private historicoService:HistoricoService,
+  constructor(private activatedRoute: ActivatedRoute, 
+    private router: Router,
+    private historicoService:HistoricoService,
     private toastController: ToastController  ) { 
       this.obtenerHistorico();
     }
@@ -40,6 +43,10 @@ export class HistoricoPage implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  verDetalle(idServicio:string){
+    this.router.navigate(['./historicodetalle/'+idServicio]);
   }
 
 }

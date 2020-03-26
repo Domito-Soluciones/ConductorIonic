@@ -23,13 +23,13 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col>
-                            <ion-img style="float: left;" class="inicio" src="./assets/telefono.png" (click)="llamar(item.servicio_pasajero_celular)"></ion-img>
+                            <ion-img style="float: left;" *ngIf="i > 0" class="inicio" src="./assets/telefono.png" (click)="llamar(item.servicio_pasajero_celular)"></ion-img>
                         </ion-col>
                         <ion-col>
                             <ion-img style="float: left;" *ngIf="i === 0" class="inicio" src="./assets/navegar.png" (click)="navegar(item.servicio_destino)"></ion-img>
                         </ion-col>
                         <ion-col>
-                            <ion-img style="float: left;" *ngIf="i === 0" class="inicio" src="./assets/confirmar.png" (click)="confirmar()"></ion-img>
+                            <ion-img style="float: left;" *ngIf="i === 0" class="inicio" src="./assets/confirmar.png" (click)="confirmar(item.servicio_pasajero_id)"></ion-img>
                         </ion-col>
                         <ion-col>
                             <ion-img style="float: left;" class="inicio" src="./assets/cerrar.png" (click)="cancelar(item.servicio_pasajero_id)"></ion-img>

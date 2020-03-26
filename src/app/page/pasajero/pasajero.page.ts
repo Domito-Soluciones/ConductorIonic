@@ -8,7 +8,6 @@ import { AceptarServicioService } from 'src/app/service/aceptar-servicio.service
 import { CambiarEstadoPasajerosService } from 'src/app/service/cambiar-estado-pasajeros.service';
 import { CambiarEstadoPasajeroService } from 'src/app/service/cambiar-estado-pasajero.service';
 import { ProgramadoService } from 'src/app/service/programado.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pasajero',
@@ -18,12 +17,13 @@ import { Observable } from 'rxjs';
 export class PasajeroPage implements OnInit {
 
   servicio:any[] = [];
-  idServicio:any;
-  tipoRuta:any;
-  cliente:any;
-  fecha:any;
-  tarifa:any;
-  respuesta:Observable<any>;
+  idServicio:string;
+  tipoRuta:string;
+  cliente:string;
+  fecha:string;
+  hora:string;
+  tarifa:string;
+  opcion:string;
 
   constructor(private activatedRoute: ActivatedRoute, 
               private router: Router,
@@ -45,26 +45,50 @@ export class PasajeroPage implements OnInit {
   }
 
   cargarPasajeros(){
-    this.respuesta = this.programadoService.obtenererviciosProgramado(this.idServicio);
-    this.respuesta.subscribe(data => {
+    this.servicio = [];
+    let respuesta = this.programadoService.obtenererviciosProgramado(this.idServicio);
+    respuesta.subscribe(data => {
       this.tipoRuta = data[0].servicio_truta;
       this.cliente = data[0].servicio_cliente;
-      this.fecha = data[0].servicio_fecha+" "+data[0].servicio_hora;
-      this.tarifa = data[0].servicio_tarifa1;
-      if(Constantes.conductor.zarpeIniciado && this.tipoRuta.indexOf("ZP") != -1){
-        let empresa = {"pasajero_nombre" : data[0].servicio_cliente,
-        "pasajero_celular" : "",
-        "pasajero_destino": data[0].servicio_cliente_direccion}
+      this.fecha = data[0].servicio_fecha;
+      this.hora = data[0].servicio_hora;
+      this.tarifa = data[0].servicio_tarifa;
+      if(!Constantes.conductor.zarpeIniciado && this.tipoRuta.indexOf("ZP") != -1){
+        let empresa = {"servicio_pasajero_nombre" : data[0].servicio_cliente,
+        "servicio_pasajero_celular" : "",
+        "servicio_destino": data[0].servicio_cliente_direccion}
         this.servicio.push(empresa); 
       }
       for(let i = 0;i < data.length; i++){
-        this.servicio.push(data[i]); 
+        let estado = data[i].servicio_pasajero_estado ;
+        if(data[i].servicio_truta.indexOf("ZP") != -1){
+          if(estado !== "3" && estado !== "2"){
+            this.servicio.push(data[i]); 
+          }
+        }
+        else if(data[i].servicio_truta.indexOf("RG") != -1){
+          if(estado !== "3" && estado !== "2" && estado !== "1"){
+            this.servicio.push(data[i]); 
+          }
+        }
+        else if(data[i].servicio_truta.indexOf("XX") != -1){
+          if(estado !== "3" && estado !== "2" && estado !== "1"){
+            alert(data[i].servicio_estado);
+            if(data[i].servicio_destino !== ""){
+              this.servicio.push(data[i]); 
+            }
+          }
+        }
       }
       if(this.tipoRuta.indexOf("RG") != -1){
-        let empresa = {"pasajero_nombre" : data[0].servicio_cliente,
-        "pasajero_celular" : "",
-        "pasajero_destino": data[0].servicio_cliente_direccion}
+        let empresa = {"servicio_pasajero_nombre" : data[0].servicio_cliente,
+        "servicio_pasajero_celular" : "",
+        "servicio_destino": data[0].servicio_cliente_direccion}
         this.servicio.push(empresa); 
+      }
+
+      if(this.servicio.length === 0){
+          this.finalizar();
       }
     }, error => {
        console.log(error);
@@ -96,9 +120,13 @@ export class PasajeroPage implements OnInit {
   }
 
   async confirmar(idPasajero:any){
+    if(typeof idPasajero === 'undefined'){
+      idPasajero = "0";
+    }
+    this.opcion = 'confirmar';
     if (this.tipoRuta.indexOf("RG") > -1){
       Constantes.conductor.pasajeroActual = idPasajero;
-      if(idPasajero === "0"){
+      if(idPasajero !== "0"){
         const alert = await this.alertCtrl.create({
           message: '¿ Esta seguro que desea dejar al pasajero aquí ?',
           buttons: [
@@ -113,8 +141,13 @@ export class PasajeroPage implements OnInit {
               text: 'Si',
               handler: () => {
                   Constantes.conductor.pasajeroRecogido = false;
-                  this.cambiarEstadoPasajeroService.cambiarEstadoPasajero(this.idServicio,idPasajero,"1","","");
-                  //agregar el geocoder de TomarPasajeroOperation.java
+                  let respuesta = this.cambiarEstadoPasajeroService.cambiarEstadoPasajero(this.idServicio,idPasajero,"1","","");
+                  respuesta.subscribe(data => {
+                    this.cargarPasajeros();
+                      //agregar el geocoder de TomarPasajeroOperation.java
+                  }, error => {
+                   console.log(error);
+                 });
               }
             }
           ]
@@ -142,8 +175,13 @@ export class PasajeroPage implements OnInit {
               text: 'Si',
               handler: () => {
                   Constantes.conductor.pasajeroRepartido = false;
-                  this.cambiarEstadoPasajeroService.cambiarEstadoPasajero(this.idServicio,idPasajero,"3","",this.tipoRuta);
-
+                  console.log(this.idServicio+" "+idPasajero+" 3 "+" "+this.tipoRuta);
+                  let respuesta = this.cambiarEstadoPasajeroService.cambiarEstadoPasajero(this.idServicio,idPasajero,"3","",this.tipoRuta);
+                  respuesta.subscribe(data => {
+                    this.cargarPasajeros();
+                  }, error => {
+                     console.log(error);
+                   });
                 }
             }
           ]
@@ -174,11 +212,46 @@ export class PasajeroPage implements OnInit {
       }
     }
     else if (this.tipoRuta.indexOf("ESP") > -1){
-      //servicio especial
+      Constantes.conductor.pasajeroActual = idPasajero;
+      if(idPasajero !== "0"){
+        const alert = await this.alertCtrl.create({
+          message: '¿ Esta seguro que desea dejar al pasajero aquí ?',
+          buttons: [
+            {
+              text: 'No',
+              role: 'No',
+              handler: () => {
+               
+              }
+            },
+            {
+              text: 'Si',
+              handler: () => {
+                  Constantes.conductor.pasajeroRecogido = false;
+                  let respuesta = this.cambiarEstadoPasajeroService.cambiarEstadoPasajero(this.idServicio,idPasajero,"1","","");
+                  respuesta.subscribe(data => {
+                    this.cargarPasajeros();
+                      //agregar el geocoder de TomarPasajeroOperation.java
+                  }, error => {
+                   console.log(error);
+                 });
+              }
+            }
+          ]
+       });
+       await alert.present(); 
+      }
+      else{
+        this.finalizar();
+      }
     }
   }
 
   async cancelar(idPasajero:any){
+    if(typeof idPasajero === 'undefined'){
+      idPasajero = "0";
+    }
+    this.opcion = 'cancelar';
       if (this.tipoRuta.indexOf("ZP") > -1){
         Constantes.conductor.pasajeroRecogido = false;
       }
@@ -241,10 +314,18 @@ export class PasajeroPage implements OnInit {
           text: 'Guardar',
           handler: data => {
             if(data.motivo !== ""){
-              this.aceptarServicioService.cambiarEstadoServicio(this.idServicio,'6',data.motivo);
-              this.cambiarEstadoPasajerosService.cambiarEstadoPasajeros(this.idServicio,'2');
-              this.mostrarMensaje("Servicio cancelado");
-              this.router.navigate(['./menu/programado/']);
+              let respuesta = this.aceptarServicioService.cambiarEstadoServicio(this.idServicio,'6',data.motivo);
+              respuesta.subscribe(data => {
+                let respuesta = this.cambiarEstadoPasajerosService.cambiarEstadoPasajeros(this.idServicio,'2');
+                respuesta.subscribe(data => {
+                this.mostrarMensaje("Servicio cancelado");
+                this.router.navigate(['./menu/programado/']);
+              }, error => {
+                 console.log(error);
+               });
+              }, error => {
+                 console.log(error);
+               });
             }
             else{
               this.mostrarMensaje("Debe ingresar un motivo de cancelación");
@@ -288,7 +369,12 @@ export class PasajeroPage implements OnInit {
               else if (opcion === 1){
                 obs = 'Pasajero enfermo';
               }
-              this.cambiarEstadoPasajeroService.cambiarEstadoPasajero(this.idServicio,idPasajero,"2",obs,"");
+              let respuesta = this.cambiarEstadoPasajeroService.cambiarEstadoPasajero(this.idServicio,idPasajero,"2",obs,"");
+              respuesta.subscribe(data => {
+                this.recargarPasajeros();
+              }, error => {
+               console.log(error);
+             });
             }
             else if(opcion === 2){
               this.presentPromptMotivoCancelacion(idPasajero);
@@ -331,10 +417,15 @@ export class PasajeroPage implements OnInit {
 
   finalizar(){
     this.aceptarServicioService.cambiarEstadoServicio(this.idServicio,"5","");
-    this.cambiarEstadoPasajerosService.cambiarEstadoPasajeros(this.idServicio,"3");
-    Constantes.conductor.zarpeIniciado = false;
-    Constantes.conductor.locationDestino = null;
-    this.router.navigate(['./finservicio/'+this.idServicio+'/'+this.cliente+'/'+this.fecha+'/'+this.tarifa]);
+    let respuesta = this.cambiarEstadoPasajerosService.cambiarEstadoPasajeros(this.idServicio,"3");
+    respuesta.subscribe(data => {
+      Constantes.conductor.zarpeIniciado = false;
+      Constantes.conductor.locationDestino = null;
+      this.router.navigate(['./finservicio/'+this.idServicio+'/'+this.cliente+'/'+
+      this.fecha+'/'+this.hora+'/'+this.tarifa]);
+    }, error => {
+       console.log(error);
+     });
   }
 
   recargarPasajeros(){

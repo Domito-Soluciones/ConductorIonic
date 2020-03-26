@@ -19,11 +19,6 @@ export class AceptarServicioService {
     .set("estado",estado)
     .set("observacion",observacion);
     this.respuesta = this.http.post(Constantes.URL_BASE_SERVICIO+"ModEstadoServicio.php", params, Constantes.httpOptions );
-    this.respuesta.subscribe(data => {
-
-    }, error => {
-     console.log(error);
-   });
     return this.respuesta;
   }
 }

@@ -57,25 +57,11 @@ export class ProgramadodetallePage implements OnInit {
         this.pasajeros.push(empresa); 
     }
     for(var i = 0 ; i < aux.length;i++){
-        let pjro = {"pasajero_nombre" : aux[i].servicio_pasajero_nombre,
-                  "pasajero_celular" : aux[i].servicio_pasajero_celular,
-                  "pasajero_destino": aux[i].servicio_destino}
-        if(aux[i].servicio_truta.indexOf("ZP") != -1){
-          if(aux[i].servicio_estado !== "3" && aux[i].servicio_estado !== "2"){
-            this.pasajeros.push(pjro);
-          }
-        }
-        else if(aux[i].servicio_truta.indexOf("RG") != -1){
-          if(aux[i].servicio_estado !== "3" && aux[i].servicio_estado !== "2" && aux[i].servicio_estado !== "1"){
-            this.pasajeros.push(pjro);
-          }
-        }
-        else if(aux[i].servicio_truta.indexOf("XX") != -1){
-          if(aux[i].servicio_estado !== "3" && aux[i].servicio_estado !== "2" && aux[i].servicio_estado !== "1"){
-            if(aux[i].servicio_destino !== ""){
-              this.pasajeros.push(pjro);
-            }
-          }
+        if(aux[i].servicio_id === this.idServicio){
+          let pjro = {"pasajero_nombre" : aux[i].servicio_pasajero_nombre,
+            "pasajero_celular" : aux[i].servicio_pasajero_celular,
+            "pasajero_destino": aux[i].servicio_destino};  
+          this.pasajeros.push(pjro);
         }
       if(aux[i].servicio_observacion === ''){
         aux[i].servicio_observacion = 'Sin observaciones';
@@ -112,15 +98,23 @@ export class ProgramadodetallePage implements OnInit {
   aceptarServicio(estado:any){
     //agregr cancelar todas las notificaciones
     if(estado === '1'){
-      this.aceptarServicioService.cambiarEstadoServicio(this.idServicio,'3','');
-      this.router.navigate(['./menu/programado/']);
+      let respuesta = this.aceptarServicioService.cambiarEstadoServicio(this.idServicio,'3','');
+      respuesta.subscribe(data => {
+        this.router.navigate(['./menu/programado/']);
+      }, error => {
+       console.log(error);
+     });
     }
     else if(estado === '3'){
       let now = Math.round(new Date().getTime()/1000);
       let fecha = new Date(this.fechaServicio+" "+this.horaServicio).getTime() / 1000;
       if((fecha - now) <= 36000 &&  now < fecha){
-        this.aceptarServicioService.cambiarEstadoServicio(this.idServicio,'4','');
-        this.router.navigate(['./pasajero/'+this.idServicio]);
+        let respuesta = this.aceptarServicioService.cambiarEstadoServicio(this.idServicio,'4','');
+        respuesta.subscribe(data => {
+          this.router.navigate(['./pasajero/'+this.idServicio]);
+        }, error => {
+         console.log(error);
+       });
       }
       else{
         this.mostrarMensaje("Falta mas de 1 hora para el inicio del servicio");
@@ -146,8 +140,12 @@ export class ProgramadodetallePage implements OnInit {
         {
           text: 'Si',
           handler: () => {
-              this.desasignarServicioService.desasignarServicio(this.idServicio);
-              this.router.navigate(['./menu/programado']);
+              let respuesta = this.desasignarServicioService.desasignarServicio(this.idServicio);
+              respuesta.subscribe(data => {
+                this.router.navigate(['./menu/programado']);
+              }, error => {
+               console.log(error);
+             });
           }
         }
       ]

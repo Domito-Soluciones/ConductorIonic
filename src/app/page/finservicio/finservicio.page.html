@@ -6,43 +6,43 @@
     <ion-grid>
         <ion-row>
             <ion-col>
-                <div class="negrita">Servicio Finalizado</div>
+                <div class="negrita centrado">Servicio Finalizado</div>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col>
-                <div id="id">{{id}}</div>
+                <div id="id" class="centrado">{{id}}</div>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col>
-                <div class="negrita">Cliente</div>
+                <div class="negrita centrado">Cliente</div>
             </ion-col>
             <ion-col>
-                <div id="id">{{cliente}}</div>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col>
-                <div class="negrita">Fecha</div>
-            </ion-col>
-            <ion-col>
-                <div id="cliente">{{fecha}}</div>
+                <div id="id" class="centrado">{{cliente}}</div>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col>
-                <div class="negrita">Tarifa</div>
+                <div class="negrita centrado">Fecha</div>
             </ion-col>
             <ion-col>
-                <div>{{tarifa}}</div>
+                <div id="cliente" class="centrado">{{fecha}} {{hora}}</div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <div class="negrita centrado">Tarifa</div>
+            </ion-col>
+            <ion-col>
+                <div class="centrado">{{tarifa}}</div>
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-textarea #observacion>
-        Comentarios adicionales
+    <ion-textarea #observacion style="border:solid 1px silver">
+
     </ion-textarea>
-    <ion-button class="boton" (click)="finalizar()">
+    <ion-button class="boton" style="width:100%" (click)="finalizar()">
         GUARDAR Y FINALIZAR
     </ion-button>
 </ion-content>

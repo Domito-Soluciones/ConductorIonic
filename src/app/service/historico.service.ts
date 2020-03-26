@@ -14,10 +14,11 @@ export class HistoricoService {
 
   obtenerHistorico() {
     let today = new Date();
+    let dia = today.getDate();
     let mm = today.getMonth() + 1;
     let yyyy = today.getFullYear();
     let fechaDesde = "01/" + (mm-2) + "/" + yyyy;
-    let fechaHasta = "01/" + mm + "/" + yyyy;
+    let fechaHasta = dia+"/" + mm + "/" + yyyy;
     let params = new HttpParams()
     .set("desde", fechaDesde)
     .set("hasta", fechaHasta)
@@ -27,6 +28,7 @@ export class HistoricoService {
 
   }, error => {
    console.log(error);
- });  return this.respuesta;
+ });  
+ return this.respuesta;
 }
 }
