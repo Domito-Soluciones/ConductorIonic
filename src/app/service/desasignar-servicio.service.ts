@@ -18,11 +18,6 @@ export class DesasignarServicioService {
       .set("estado","1")
       .set("observacion","");
       this.respuesta = this.http.post(Constantes.URL_BASE_SERVICIO+"ModEstadoServicio.php", params, Constantes.httpOptions );
-      this.respuesta.subscribe(data => {
-
-      }, error => {
-       console.log(error);
-     });
       return this.respuesta;
   }
 }

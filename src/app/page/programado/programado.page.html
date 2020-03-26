@@ -3,7 +3,7 @@
     <ion-list>
         <div *ngFor="let item of programados;">
             <ion-item style="cursor: pointer;" *ngIf="item.servicio_pasajero_index == 0" (click)="redirect(item.servicio_id)">
-                <div>
+                <div style="width: 70px;">
                     <ion-img *ngIf="item.servicio_estado == 1" class="inicio" src="./assets/oknaranjo.png"></ion-img>
                     <ion-img *ngIf="item.servicio_estado == 3" class="inicio" src="./assets/okverde.png"></ion-img>
                     <ion-img *ngIf="item.servicio_estado == 4" class="inicio" src="./assets/okazul.png"></ion-img>

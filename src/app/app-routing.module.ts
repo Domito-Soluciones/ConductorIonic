@@ -8,7 +8,9 @@ const routes: Routes = [
   { path: 'salir', loadChildren: './page/salir/salir.module#SalirPageModule' },
   { path: 'detalle/:id', loadChildren: './page/programadodetalle/programadodetalle.module#ProgramadodetallePageModule' },
   { path: 'pasajero/:id', loadChildren: './page/pasajero/pasajero.module#PasajeroPageModule' },
-  { path: 'finservicio/:id/:cliente/:fecha:/:tarifa', loadChildren: './page/finservicio/finservicio.module#FinservicioPageModule' }
+  { path: 'finservicio/:id/:cliente/:fecha:/:hora/:tarifa', loadChildren: './page/finservicio/finservicio.module#FinservicioPageModule' },
+  { path: 'historicodetalle/:id', loadChildren: './page/historicodetalle/historicodetalle.module#HistoricodetallePageModule' }
+
 
 
 

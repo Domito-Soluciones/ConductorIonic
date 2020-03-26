@@ -2,7 +2,7 @@
 <ion-content>
     <ion-img class="img-central" [src]="imagen"></ion-img>
     <ion-list>
-        <ion-item *ngFor="let item of historico">
+        <ion-item style="cursor:pointer" *ngFor="let item of historico" (click)="verDetalle(item.servicio_id)">
             <div>
                 <ion-img class="cancelado" src="./assets/cerrar.png" *ngIf="item.servicio_estado === '6'"></ion-img>
                 <ion-img class="finalizado" src="./assets/finalizado.png" *ngIf="item.servicio_estado === '5'"></ion-img>

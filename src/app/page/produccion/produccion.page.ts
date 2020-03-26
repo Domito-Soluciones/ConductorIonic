@@ -11,7 +11,7 @@ import { ToastController } from '@ionic/angular';
 export class ProduccionPage implements OnInit {
   
   imagen = "./assets/produccion.png";
-  total = 0;
+  total:number = 0;
   respuestaProduccion:Observable<any>;
   produccion:any[];
     
@@ -28,6 +28,9 @@ export class ProduccionPage implements OnInit {
     this.respuestaProduccion = this.produccionService.obtenerProduccion();
     this.respuestaProduccion.subscribe(data => {
       this.produccion = data;
+      for(let i = 0 ; i < this.produccion.length;i++){
+        this.total += parseInt(this.produccion[i].servicio_tarifa1);
+      }
       if(this.produccion.length === 0){
         this.mostrarMensaje("No hay producción registrada");
       }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BackGroundService } from 'src/app/service/back-ground.service';
 
 @Component({
   selector: 'app-salir',
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class SalirPage implements OnInit {
 
-  constructor(private router: Router) { 
+  constructor(private router: Router,
+    private backGroundService: BackGroundService) { 
     this.salir();
   }
 
@@ -17,6 +19,7 @@ export class SalirPage implements OnInit {
   }
 
   salir(){
+    this.backGroundService.finalizar();
     this.router.navigateByUrl("login");
   }
 

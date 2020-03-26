@@ -49,14 +49,19 @@ ion-header {
     width: 100%;
     height: 60px;
     line-height: 60px;
-    text-align: center;
+    text-align: right;
     background-color: #253ca1;
     color: white;
     font-size: 20px;
+    padding-right: 33%;
 }
 
 .img-central {
     margin: 40px auto;
     width: 60px;
     height: 60px;
+}
+
+ion-toolbar {
+    background-color: #253ca1 !important;
 }

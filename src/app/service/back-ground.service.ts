@@ -35,6 +35,13 @@ export class BackGroundService {
     });
   }
 
+  isActivo(){
+    if(this.backgroundMode.isActive()){
+      return true;
+    }
+    return false;
+  }
+
   finalizar(){
     clearInterval(this.interval);
   }

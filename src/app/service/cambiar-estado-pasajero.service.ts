@@ -18,13 +18,10 @@ export class CambiarEstadoPasajeroService {
     .set("idPasajero",idPasajero)
     .set("estado",estado)
     .set("observacion",observacion)
-    .set("tipo",tipo);
+    .set("tipo",tipo)
+    .set("lat","0")
+    .set("lon","0");
     this.respuesta = this.http.post(Constantes.URL_BASE_SERVICIO+"ModEstadoServicioPasajero.php", params, Constantes.httpOptions );
-    this.respuesta.subscribe(data => {
-
-    }, error => {
-     console.log(error);
-   });
     return this.respuesta;
   }
 }
